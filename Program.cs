@@ -1,35 +1,21 @@
-﻿Console.WriteLine("======================================");
-Console.WriteLine("       CALCULADORA DE RECURSOS");
-Console.WriteLine("======================================");
+﻿Console.WriteLine("================================");
+Console.WriteLine("        NIVEL DE ACCESO");
+Console.WriteLine("================================");
 
-int trabajadores;
-double horas;
-double consumoPorHora;
+int edad;
 
-Console.Write("Ingrese la cantidad de trabajadores: ");
-while (!int.TryParse(Console.ReadLine(), out trabajadores) || trabajadores <= 0)
+Console.Write("Ingrese la edad del operador: ");
+
+while (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
 {
-    Console.Write("Dato inválido. Ingrese una cantidad válida: ");
+    Console.Write("Edad inválida. Ingrese una edad válida: ");
 }
 
-Console.Write("Ingrese las horas trabajadas: ");
-while (!double.TryParse(Console.ReadLine(), out horas) || horas <= 0)
+if (edad >= 18)
 {
-    Console.Write("Dato inválido. Ingrese una cantidad válida: ");
+    Console.WriteLine("Acceso permitido");
 }
-
-Console.Write("Ingrese el consumo por hora: ");
-while (!double.TryParse(Console.ReadLine(), out consumoPorHora) || consumoPorHora <= 0)
+else
 {
-    Console.Write("Dato inválido. Ingrese una cantidad válida: ");
+    Console.WriteLine("Acceso restringido");
 }
-
-double consumoTotal = trabajadores * horas * consumoPorHora;
-
-Console.WriteLine();
-Console.WriteLine("========== REPORTE ==========");
-Console.WriteLine("Trabajadores: " + trabajadores);
-Console.WriteLine("Horas trabajadas: " + horas);
-Console.WriteLine("Consumo por hora: " + consumoPorHora);
-Console.WriteLine("Consumo total: " + consumoTotal);
-Console.WriteLine("=============================");
