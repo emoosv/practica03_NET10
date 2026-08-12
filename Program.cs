@@ -1,30 +1,33 @@
-﻿Console.WriteLine("======================================");
-Console.WriteLine("        SISTEMA DE AUTORIZACIÓN");
-Console.WriteLine("======================================");
+﻿Console.Write("Ingrese el nivel de alerta (0-10): ");
 
-Console.Write("Ingrese la edad del operador: ");
-bool edadValida = int.TryParse(Console.ReadLine(), out int edad);
-
-Console.Write("Ingrese el nivel de seguridad (1-5): ");
-bool nivelValido = int.TryParse(Console.ReadLine(), out int nivel);
-
-Console.Write("¿La credencial está activa? (si/no): ");
-string respuesta = Console.ReadLine() ?? "";
-
-bool credencialActiva = respuesta.Trim().ToLower() == "si";
-
-if (edadValida && edad >= 0 && nivelValido && nivel >= 1 && nivel <= 5)
+if (int.TryParse(Console.ReadLine(), out int nivel))
 {
-    if (edad >= 18 && nivel >= 3 && credencialActiva)
+    if (nivel == 0)
     {
-        Console.WriteLine("Acceso autorizado");
+        Console.WriteLine("NORMAL");
+    }
+    else if (nivel >= 1 && nivel <= 3)
+    {
+        Console.WriteLine("ADVERTENCIA");
+    }
+    else if (nivel >= 4 && nivel <= 6)
+    {
+        Console.WriteLine("PELIGRO");
+    }
+    else if (nivel >= 7 && nivel <= 9)
+    {
+        Console.WriteLine("CRÍTICO");
+    }
+    else if (nivel == 10)
+    {
+        Console.WriteLine("EMERGENCIA");
     }
     else
     {
-        Console.WriteLine("Acceso denegado");
+        Console.WriteLine("NIVEL DE ALERTA INVÁLIDO");
     }
 }
 else
 {
-    Console.WriteLine("Error: ingrese valores válidos.");
+    Console.WriteLine("NIVEL DE ALERTA INVÁLIDO");
 }
