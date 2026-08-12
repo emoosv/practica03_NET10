@@ -1,41 +1,38 @@
-﻿Console.WriteLine("===== PANEL DE CONTROL =====");
-Console.WriteLine("1. Consultar estado");
-Console.WriteLine("2. Mostrar temperatura");
-Console.WriteLine("3. Mostrar operadores");
-Console.WriteLine("4. Reiniciar sistema");
-Console.WriteLine("5. Salir");
-Console.Write("Seleccione una opción: ");
+﻿string usuarioCorrecto = "admin";
+string contraseñaCorrecta = "1234";
 
-if (int.TryParse(Console.ReadLine(), out int opcion))
+int intentos = 0;
+const int maxIntentos = 3;
+
+while (intentos < maxIntentos)
 {
-    switch (opcion)
+    Console.Write("Ingrese el usuario: ");
+    string? usuario = Console.ReadLine();
+
+    Console.Write("Ingrese la contraseña: ");
+    string? contraseña = Console.ReadLine();
+
+    if (usuario == usuarioCorrecto && contraseña == contraseñaCorrecta)
     {
-        case 1:
-            Console.WriteLine("Estado del sistema: OPERATIVO");
-            break;
-
-        case 2:
-            Console.WriteLine("Temperatura: 25 °C");
-            break;
-
-        case 3:
-            Console.WriteLine("Operadores registrados: 3");
-            break;
-
-        case 4:
-            Console.WriteLine("Sistema reiniciado correctamente.");
-            break;
-
-        case 5:
-            Console.WriteLine("Saliendo del sistema...");
-            break;
-
-        default:
-            Console.WriteLine("OPCIÓN NO VÁLIDA");
-            break;
+        Console.WriteLine("Inicio de sesión exitoso.");
+        break;
     }
-}
-else
-{
-    Console.WriteLine("OPCIÓN NO VÁLIDA");
+    else
+    {
+        intentos++;
+
+        int intentosRestantes = maxIntentos - intentos;
+
+        if (intentosRestantes > 0)
+        {
+            Console.WriteLine($"Usuario o contraseña incorrectos.");
+            Console.WriteLine($"Intentos restantes: {intentosRestantes}");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("SISTEMA BLOQUEADO");
+            Console.ResetColor();
+        }
+    }
 }
