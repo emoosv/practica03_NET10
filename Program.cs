@@ -1,50 +1,41 @@
-﻿int opcion;
+﻿Console.Write("Ingrese el número para la tabla: ");
 
-do
+if (int.TryParse(Console.ReadLine(), out int numero))
 {
-    Console.WriteLine("\n===== MENÚ PRINCIPAL =====");
-    Console.WriteLine("1. Consultar estado");
-    Console.WriteLine("2. Mostrar temperatura");
-    Console.WriteLine("3. Mostrar operadores");
-    Console.WriteLine("4. Reiniciar sistema");
-    Console.WriteLine("5. Salir");
-    Console.Write("Seleccione una opción: ");
+    Console.Write("Ingrese el multiplicador inicial: ");
 
-    if (int.TryParse(Console.ReadLine(), out opcion))
+    if (int.TryParse(Console.ReadLine(), out int inicio))
     {
-        switch (opcion)
+        Console.Write("Ingrese el multiplicador final: ");
+
+        if (int.TryParse(Console.ReadLine(), out int fin))
         {
-            case 1:
-                Console.WriteLine("Estado del sistema: OPERATIVO");
-                break;
+            if (inicio <= fin)
+            {
+                Console.WriteLine($"\nTabla del {numero}:");
 
-            case 2:
-                Console.WriteLine("Temperatura: 25 °C");
-                break;
-
-            case 3:
-                Console.WriteLine("Operadores registrados: 3");
-                break;
-
-            case 4:
-                Console.WriteLine("Sistema reiniciado correctamente.");
-                break;
-
-            case 5:
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("SALIR");
-                Console.ResetColor();
-                break;
-
-            default:
-                Console.WriteLine("OPCIÓN NO VÁLIDA");
-                break;
+                for (int multiplicador = inicio; multiplicador <= fin; multiplicador++)
+                {
+                    int resultado = numero * multiplicador;
+                    Console.WriteLine($"{numero} x {multiplicador} = {resultado}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error: el inicio no puede ser mayor que el fin.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Error: el multiplicador final debe ser un número.");
         }
     }
     else
     {
-        opcion = 0;
-        Console.WriteLine("OPCIÓN NO VÁLIDA");
+        Console.WriteLine("Error: el multiplicador inicial debe ser un número.");
     }
-
-} while (opcion != 5);
+}
+else
+{
+    Console.WriteLine("Error: el número debe ser válido.");
+}
