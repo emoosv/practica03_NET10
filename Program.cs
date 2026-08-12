@@ -1,20 +1,33 @@
-﻿string[] operadores =
+﻿string[] codigos =
 {
-    "Carlos",
-    "Ana",
-    "Miguel",
-    "Luis",
-    "Sofia",
-    "Daniel",
-    "Jose"
+    "A123",
+    "B456",
+    "ERROR",
+    "C789",
+    "D321",
+    "EXIT",
+    "E654"
 };
 
-Console.WriteLine("Operadores con más de cuatro caracteres:");
+Console.WriteLine("Procesando códigos:");
 
-foreach (string nombre in operadores)
+foreach (string codigo in codigos)
 {
-    if (nombre.Length > 4)
+    if (codigo == "ERROR")
     {
-        Console.WriteLine(nombre);
+        continue;
     }
+
+    if (codigo == "EXIT")
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("EXIT");
+        Console.ResetColor();
+
+        break;
+    }
+
+    Console.WriteLine($"Código procesado: {codigo}");
 }
+
+Console.WriteLine("Procesamiento finalizado.");
