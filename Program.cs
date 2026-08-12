@@ -1,38 +1,50 @@
-﻿string usuarioCorrecto = "admin";
-string contraseñaCorrecta = "1234";
+﻿int opcion;
 
-int intentos = 0;
-const int maxIntentos = 3;
-
-while (intentos < maxIntentos)
+do
 {
-    Console.Write("Ingrese el usuario: ");
-    string? usuario = Console.ReadLine();
+    Console.WriteLine("\n===== MENÚ PRINCIPAL =====");
+    Console.WriteLine("1. Consultar estado");
+    Console.WriteLine("2. Mostrar temperatura");
+    Console.WriteLine("3. Mostrar operadores");
+    Console.WriteLine("4. Reiniciar sistema");
+    Console.WriteLine("5. Salir");
+    Console.Write("Seleccione una opción: ");
 
-    Console.Write("Ingrese la contraseña: ");
-    string? contraseña = Console.ReadLine();
-
-    if (usuario == usuarioCorrecto && contraseña == contraseñaCorrecta)
+    if (int.TryParse(Console.ReadLine(), out opcion))
     {
-        Console.WriteLine("Inicio de sesión exitoso.");
-        break;
+        switch (opcion)
+        {
+            case 1:
+                Console.WriteLine("Estado del sistema: OPERATIVO");
+                break;
+
+            case 2:
+                Console.WriteLine("Temperatura: 25 °C");
+                break;
+
+            case 3:
+                Console.WriteLine("Operadores registrados: 3");
+                break;
+
+            case 4:
+                Console.WriteLine("Sistema reiniciado correctamente.");
+                break;
+
+            case 5:
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("SALIR");
+                Console.ResetColor();
+                break;
+
+            default:
+                Console.WriteLine("OPCIÓN NO VÁLIDA");
+                break;
+        }
     }
     else
     {
-        intentos++;
-
-        int intentosRestantes = maxIntentos - intentos;
-
-        if (intentosRestantes > 0)
-        {
-            Console.WriteLine($"Usuario o contraseña incorrectos.");
-            Console.WriteLine($"Intentos restantes: {intentosRestantes}");
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("SISTEMA BLOQUEADO");
-            Console.ResetColor();
-        }
+        opcion = 0;
+        Console.WriteLine("OPCIÓN NO VÁLIDA");
     }
-}
+
+} while (opcion != 5);
