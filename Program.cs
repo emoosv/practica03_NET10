@@ -1,21 +1,30 @@
-﻿Console.WriteLine("================================");
-Console.WriteLine("        NIVEL DE ACCESO");
-Console.WriteLine("================================");
-
-int edad;
+﻿Console.WriteLine("======================================");
+Console.WriteLine("        SISTEMA DE AUTORIZACIÓN");
+Console.WriteLine("======================================");
 
 Console.Write("Ingrese la edad del operador: ");
+bool edadValida = int.TryParse(Console.ReadLine(), out int edad);
 
-while (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
-{
-    Console.Write("Edad inválida. Ingrese una edad válida: ");
-}
+Console.Write("Ingrese el nivel de seguridad (1-5): ");
+bool nivelValido = int.TryParse(Console.ReadLine(), out int nivel);
 
-if (edad >= 18)
+Console.Write("¿La credencial está activa? (si/no): ");
+string respuesta = Console.ReadLine() ?? "";
+
+bool credencialActiva = respuesta.Trim().ToLower() == "si";
+
+if (edadValida && edad >= 0 && nivelValido && nivel >= 1 && nivel <= 5)
 {
-    Console.WriteLine("Acceso permitido");
+    if (edad >= 18 && nivel >= 3 && credencialActiva)
+    {
+        Console.WriteLine("Acceso autorizado");
+    }
+    else
+    {
+        Console.WriteLine("Acceso denegado");
+    }
 }
 else
 {
-    Console.WriteLine("Acceso restringido");
+    Console.WriteLine("Error: ingrese valores válidos.");
 }
