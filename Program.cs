@@ -1,33 +1,23 @@
-﻿string[] codigos =
-{
-    "A123",
-    "B456",
-    "ERROR",
-    "C789",
-    "D321",
-    "EXIT",
-    "E654"
-};
+﻿Console.Write("Ingrese su nombre completo: ");
+string? nombre = Console.ReadLine();
 
-Console.WriteLine("Procesando códigos:");
-
-foreach (string codigo in codigos)
+if (!string.IsNullOrWhiteSpace(nombre))
 {
-    if (codigo == "ERROR")
+    // Elimina espacios al inicio y al final
+    nombre = nombre.Trim();
+
+    // Elimina espacios innecesarios entre las palabras
+    while (nombre.Contains("  "))
     {
-        continue;
+        nombre = nombre.Replace("  ", " ");
     }
 
-    if (codigo == "EXIT")
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("EXIT");
-        Console.ResetColor();
-
-        break;
-    }
-
-    Console.WriteLine($"Código procesado: {codigo}");
+    Console.WriteLine("\nNombre limpio: " + nombre);
+    Console.WriteLine("Cantidad de caracteres: " + nombre.Length);
+    Console.WriteLine("Mayúsculas: " + nombre.ToUpper());
+    Console.WriteLine("Minúsculas: " + nombre.ToLower());
 }
-
-Console.WriteLine("Procesamiento finalizado.");
+else
+{
+    Console.WriteLine("Error: debe ingresar un nombre.");
+}
