@@ -1,64 +1,26 @@
-﻿Console.Write("Ingrese el primer número: ");
+﻿Random random = new Random();
 
-if (double.TryParse(Console.ReadLine(), out double numero1))
+Console.Write("¿Cuántos códigos de seguridad desea generar? ");
+
+if (int.TryParse(Console.ReadLine(), out int cantidad))
 {
-    Console.Write("Ingrese el segundo número: ");
-
-    if (double.TryParse(Console.ReadLine(), out double numero2))
+    if (cantidad > 0)
     {
-        Console.WriteLine("\n===== SIMULADOR MATEMÁTICO =====");
+        Console.WriteLine("\n===== CÓDIGOS DE SEGURIDAD =====");
 
-        // Potencia
-        Console.WriteLine("Potencia: " + Math.Pow(numero1, numero2));
-
-        // Raíz cuadrada
-        if (numero1 >= 0)
+        for (int i = 1; i <= cantidad; i++)
         {
-            Console.WriteLine("Raíz cuadrada del primer número: " +
-                              Math.Sqrt(numero1));
+            int codigo = random.Next(100000, 1000000);
+
+            Console.WriteLine($"Código {i}: {codigo}");
         }
-        else
-        {
-            Console.WriteLine("Raíz cuadrada del primer número: no existe en números reales.");
-        }
-
-        if (numero2 >= 0)
-        {
-            Console.WriteLine("Raíz cuadrada del segundo número: " +
-                              Math.Sqrt(numero2));
-        }
-        else
-        {
-            Console.WriteLine("Raíz cuadrada del segundo número: no existe en números reales.");
-        }
-
-        // Valor absoluto
-        Console.WriteLine("Valor absoluto del primer número: " +
-                          Math.Abs(numero1));
-
-        Console.WriteLine("Valor absoluto del segundo número: " +
-                          Math.Abs(numero2));
-
-        // Redondeo
-        Console.WriteLine("Redondeo del primer número: " +
-                          Math.Round(numero1));
-
-        Console.WriteLine("Redondeo del segundo número: " +
-                          Math.Round(numero2));
-
-        // Mayor y menor
-        Console.WriteLine("Número mayor: " +
-                          Math.Max(numero1, numero2));
-
-        Console.WriteLine("Número menor: " +
-                          Math.Min(numero1, numero2));
     }
     else
     {
-        Console.WriteLine("Error: el segundo número no es válido.");
+        Console.WriteLine("Error: la cantidad debe ser mayor que 0.");
     }
 }
 else
 {
-    Console.WriteLine("Error: el primer número no es válido.");
+    Console.WriteLine("Error: debe ingresar una cantidad válida.");
 }
