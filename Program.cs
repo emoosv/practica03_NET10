@@ -1,23 +1,55 @@
-﻿Console.Write("Ingrese su nombre completo: ");
-string? nombre = Console.ReadLine();
+﻿Console.Write("Ingrese su edad: ");
 
-if (!string.IsNullOrWhiteSpace(nombre))
+if (int.TryParse(Console.ReadLine(), out int edad))
 {
-    // Elimina espacios al inicio y al final
-    nombre = nombre.Trim();
-
-    // Elimina espacios innecesarios entre las palabras
-    while (nombre.Contains("  "))
+    if (edad >= 0)
     {
-        nombre = nombre.Replace("  ", " ");
+        Console.WriteLine("Edad registrada: " + edad);
     }
-
-    Console.WriteLine("\nNombre limpio: " + nombre);
-    Console.WriteLine("Cantidad de caracteres: " + nombre.Length);
-    Console.WriteLine("Mayúsculas: " + nombre.ToUpper());
-    Console.WriteLine("Minúsculas: " + nombre.ToLower());
+    else
+    {
+        Console.WriteLine("Error: la edad no puede ser negativa.");
+    }
 }
 else
 {
-    Console.WriteLine("Error: debe ingresar un nombre.");
+    Console.WriteLine("Error: la edad debe ser un número.");
+}
+
+Console.Write("\nIngrese su salario: ");
+
+try
+{
+    double salario = double.Parse(Console.ReadLine()!);
+
+    if (salario >= 0)
+    {
+        Console.WriteLine("Salario registrado: $" + salario);
+    }
+    else
+    {
+        Console.WriteLine("Error: el salario no puede ser negativo.");
+    }
+}
+catch (FormatException)
+{
+    Console.WriteLine("Error: el salario debe ser un número válido.");
+}
+
+Console.Write("\nIngrese su año de nacimiento: ");
+
+if (int.TryParse(Console.ReadLine(), out int añoNacimiento))
+{
+    if (añoNacimiento > 0)
+    {
+        Console.WriteLine("Año de nacimiento registrado: " + añoNacimiento);
+    }
+    else
+    {
+        Console.WriteLine("Error: el año debe ser válido.");
+    }
+}
+else
+{
+    Console.WriteLine("Error: el año de nacimiento debe ser un número.");
 }
