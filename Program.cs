@@ -1,55 +1,32 @@
-﻿Console.Write("Ingrese su edad: ");
+﻿DateTime ahora = DateTime.Now;
 
-if (int.TryParse(Console.ReadLine(), out int edad))
+Console.WriteLine("===== RELOJ DEL SISTEMA =====");
+Console.WriteLine("Fecha y hora actual: " + ahora);
+Console.WriteLine("Día: " + ahora.Day);
+Console.WriteLine("Mes: " + ahora.Month);
+Console.WriteLine("Año: " + ahora.Year);
+
+Console.Write("\nIngrese su fecha de nacimiento (dd/MM/yyyy): ");
+
+if (DateTime.TryParse(Console.ReadLine(), out DateTime fechaNacimiento))
 {
-    if (edad >= 0)
+    if (fechaNacimiento <= ahora)
     {
-        Console.WriteLine("Edad registrada: " + edad);
+        int edad = ahora.Year - fechaNacimiento.Year;
+
+        if (fechaNacimiento.Date > ahora.AddYears(-edad).Date)
+        {
+            edad--;
+        }
+
+        Console.WriteLine("Edad: " + edad + " años");
     }
     else
     {
-        Console.WriteLine("Error: la edad no puede ser negativa.");
+        Console.WriteLine("Error: la fecha de nacimiento no puede ser futura.");
     }
 }
 else
 {
-    Console.WriteLine("Error: la edad debe ser un número.");
-}
-
-Console.Write("\nIngrese su salario: ");
-
-try
-{
-    double salario = double.Parse(Console.ReadLine()!);
-
-    if (salario >= 0)
-    {
-        Console.WriteLine("Salario registrado: $" + salario);
-    }
-    else
-    {
-        Console.WriteLine("Error: el salario no puede ser negativo.");
-    }
-}
-catch (FormatException)
-{
-    Console.WriteLine("Error: el salario debe ser un número válido.");
-}
-
-Console.Write("\nIngrese su año de nacimiento: ");
-
-if (int.TryParse(Console.ReadLine(), out int añoNacimiento))
-{
-    if (añoNacimiento > 0)
-    {
-        Console.WriteLine("Año de nacimiento registrado: " + añoNacimiento);
-    }
-    else
-    {
-        Console.WriteLine("Error: el año debe ser válido.");
-    }
-}
-else
-{
-    Console.WriteLine("Error: el año de nacimiento debe ser un número.");
+    Console.WriteLine("Error: ingrese una fecha válida.");
 }
