@@ -1,26 +1,27 @@
-﻿Random random = new Random();
+﻿Console.WriteLine("===== CONSOLA DE CONTROL =====\n");
 
-Console.Write("¿Cuántos códigos de seguridad desea generar? ");
+// Estado operativo
+Console.ForegroundColor = ConsoleColor.Green;
+Console.BackgroundColor = ConsoleColor.Black;
+Console.WriteLine("OPERATIVO: Sistema funcionando correctamente.");
+Console.ResetColor();
 
-if (int.TryParse(Console.ReadLine(), out int cantidad))
-{
-    if (cantidad > 0)
-    {
-        Console.WriteLine("\n===== CÓDIGOS DE SEGURIDAD =====");
+// Estado de advertencia
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.BackgroundColor = ConsoleColor.Black;
+Console.WriteLine("ADVERTENCIA: Se detectó una situación que requiere atención.");
+Console.ResetColor();
 
-        for (int i = 1; i <= cantidad; i++)
-        {
-            int codigo = random.Next(100000, 1000000);
+// Estado de error
+Console.ForegroundColor = ConsoleColor.White;
+Console.BackgroundColor = ConsoleColor.Red;
+Console.WriteLine("ERROR: Se produjo un problema en el sistema.");
+Console.ResetColor();
 
-            Console.WriteLine($"Código {i}: {codigo}");
-        }
-    }
-    else
-    {
-        Console.WriteLine("Error: la cantidad debe ser mayor que 0.");
-    }
-}
-else
-{
-    Console.WriteLine("Error: debe ingresar una cantidad válida.");
-}
+// Estado de información
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.BackgroundColor = ConsoleColor.Black;
+Console.WriteLine("INFORMACIÓN: Sistema actualizado correctamente.");
+Console.ResetColor();
+
+Console.WriteLine("\nControl finalizado.");
