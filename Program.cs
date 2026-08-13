@@ -1,32 +1,64 @@
-﻿DateTime ahora = DateTime.Now;
+﻿Console.Write("Ingrese el primer número: ");
 
-Console.WriteLine("===== RELOJ DEL SISTEMA =====");
-Console.WriteLine("Fecha y hora actual: " + ahora);
-Console.WriteLine("Día: " + ahora.Day);
-Console.WriteLine("Mes: " + ahora.Month);
-Console.WriteLine("Año: " + ahora.Year);
-
-Console.Write("\nIngrese su fecha de nacimiento (dd/MM/yyyy): ");
-
-if (DateTime.TryParse(Console.ReadLine(), out DateTime fechaNacimiento))
+if (double.TryParse(Console.ReadLine(), out double numero1))
 {
-    if (fechaNacimiento <= ahora)
-    {
-        int edad = ahora.Year - fechaNacimiento.Year;
+    Console.Write("Ingrese el segundo número: ");
 
-        if (fechaNacimiento.Date > ahora.AddYears(-edad).Date)
+    if (double.TryParse(Console.ReadLine(), out double numero2))
+    {
+        Console.WriteLine("\n===== SIMULADOR MATEMÁTICO =====");
+
+        // Potencia
+        Console.WriteLine("Potencia: " + Math.Pow(numero1, numero2));
+
+        // Raíz cuadrada
+        if (numero1 >= 0)
         {
-            edad--;
+            Console.WriteLine("Raíz cuadrada del primer número: " +
+                              Math.Sqrt(numero1));
+        }
+        else
+        {
+            Console.WriteLine("Raíz cuadrada del primer número: no existe en números reales.");
         }
 
-        Console.WriteLine("Edad: " + edad + " años");
+        if (numero2 >= 0)
+        {
+            Console.WriteLine("Raíz cuadrada del segundo número: " +
+                              Math.Sqrt(numero2));
+        }
+        else
+        {
+            Console.WriteLine("Raíz cuadrada del segundo número: no existe en números reales.");
+        }
+
+        // Valor absoluto
+        Console.WriteLine("Valor absoluto del primer número: " +
+                          Math.Abs(numero1));
+
+        Console.WriteLine("Valor absoluto del segundo número: " +
+                          Math.Abs(numero2));
+
+        // Redondeo
+        Console.WriteLine("Redondeo del primer número: " +
+                          Math.Round(numero1));
+
+        Console.WriteLine("Redondeo del segundo número: " +
+                          Math.Round(numero2));
+
+        // Mayor y menor
+        Console.WriteLine("Número mayor: " +
+                          Math.Max(numero1, numero2));
+
+        Console.WriteLine("Número menor: " +
+                          Math.Min(numero1, numero2));
     }
     else
     {
-        Console.WriteLine("Error: la fecha de nacimiento no puede ser futura.");
+        Console.WriteLine("Error: el segundo número no es válido.");
     }
 }
 else
 {
-    Console.WriteLine("Error: ingrese una fecha válida.");
+    Console.WriteLine("Error: el primer número no es válido.");
 }
